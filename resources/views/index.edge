@@ -1,0 +1,31 @@
+@layout('layouts.master')
+@section('content')
+  <header class="w3-container w3-teal">
+    <h2 style="margin:5px">Yapılacaklar Listem | <b>{{name}}</b>
+      <form method="post" style="float:right" action="{{route('auth.logout')}}">
+        {{ csrfField() }} 
+        <input type="submit" value="Çıkış Yap" class="w3-btn w3-red">
+      </form>
+    </h2>
+    <form method="post" action="{{route('todos.store')}}">
+      {{ csrfField() }}
+      <input type="text" name="title" placeholder="Title..." value="{{old('title')}}" class="w3-input">
+      <input type="submit" class="w3-block w3-btn w3-green" value="Ekle">
+    </form>
+  </header>
+  <div class="w3-container"> 
+    <ul class="w3-ul"> 
+      @each(todo in todos)
+        <li class="{{todo.completed ? 'w3-leftbar w3-light-gray':'' }}">
+          <a href="{{route('todos.edit',{id:todo.id})}}">
+            {{todo.title}}
+          </a>
+          <form method="post" action="{{route('todos.destroy',{id:todo.id})+ '?_method=DELETE'}}" style="float:Right">
+            {{ csrfField() }} 
+            <input type="submit" class="w3-xs w3-btn w3-red" value="Sil" onclick="return confirm('Silmek İstediğinize Emin Misiniz?')">
+          </form>
+        </li>
+      @endeach
+    </ul>
+  </div> 
+@endsection

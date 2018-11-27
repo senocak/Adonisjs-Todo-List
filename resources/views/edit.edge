@@ -1,0 +1,15 @@
+@layout('layouts.master')
+@section('title')
+    Düzenle
+@endsection
+@section('content')
+    <header class="w3-container w3-teal">
+        <h2 style="margin:5px">Yapılacaklar Listem | <b>{{name}}</b></h2>
+        <form method="post" action="{{route('todos.update',{id:todo.id})  + '?_method=PATCH'}}">
+            {{ csrfField() }}
+            <input type="text" name="title" placeholder="Title..." value="{{old('title',todo.title)}}" class="w3-input">
+            <input class="w3-check" type="checkbox" {{todo.completed ? 'checked' : ''}} name="completed"><label>Tamamlandı</label>
+            <input type="submit" class="w3-block w3-btn w3-green" value="Ekle">
+        </form>
+    </header>
+@endsection

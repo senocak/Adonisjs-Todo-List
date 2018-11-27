@@ -1,0 +1,27 @@
+@layout('layouts.master')
+@section('content')
+    <header class="w3-container ">
+        <form method="post" action="{{route('auth.login')}}">
+            {{ csrfField() }}
+            <h2 style="margin:5px">Login</h2>
+            <input type="email" name="login_email" placeholder="Email Adresiniz" class="w3-input" value="{{old('email')}}">
+            <input type="password" name="login_sifre" placeholder="Şifreniz" class="w3-input">
+            <input type="submit" class="w3-block w3-btn w3-green" value="Giriş Yap">
+        </form>
+        <hr>
+        <form method="post" action="{{route('auth.register')}}">
+            {{ csrfField() }}
+            <h2 style="margin:5px">Kayıt Ol</h2>
+            <input type="email" name="email" placeholder="Email Adresiniz" class="w3-input" value="{{old('email')}}">
+            @if(hasErrorFor('email'))
+                {{getErrorFor('email')}}
+            @endif
+            <input type="password" name="password" placeholder="Şifreniz" class="w3-input">
+            @if(hasErrorFor('password'))
+                {{getErrorFor('password')}}
+            @endif
+            <input type="password" name="password_confirmation" placeholder="Şifre Tekrar" class="w3-input">
+            <input type="submit" class="w3-block w3-btn w3-blue" value="Kayıt Ol">
+        </form>
+    </header>
+@endsection

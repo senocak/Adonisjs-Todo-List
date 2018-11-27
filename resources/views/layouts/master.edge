@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Anıl Şenocak - AdonisJs | @!section('title')</title> 
+    {{ style('w3.css') }}
+  </head>
+  <body>
+    @if(flashMessage('successMessage'))
+      <div class="w3-container w3-panel w3-red"><h3>Dikkat!</h3><p>{{flashMessage('successMessage')}}</p></div> 
+    @endif
+    @if(hasErrorFor('title'))
+      <div class="w3-container w3-panel w3-red"><h3>Dikkat!</h3><p>{{getErrorFor('title')}}</p></div> 
+    @endif
+    @!section('content')
+  </body>
+</html>

@@ -1,0 +1,13 @@
+@layout('layouts.master')
+@section('content')
+    <header class="w3-container ">
+        <form method="post" action="">
+            {{ csrfField() }}
+            <h2 style="margin:5px">Register</h2>
+            <input type="email" name="email" placeholder="Email Adresiniz" class="w3-input" value="{{old('email')}}">
+            <input type="password" name="sifre" placeholder="***"  class="w3-input">
+            <input type="password" name="sifre" placeholder="***"  class="w3-input">
+            <input type="submit" class="w3-block w3-btn w3-green" value="Giriş Yap">
+        </form>
+    </header>
+@endsection
